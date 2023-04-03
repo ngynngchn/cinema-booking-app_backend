@@ -17,7 +17,7 @@ const PORT = process.env.PORT;
 const upload = multer();
 
 // enable cross communication to http://localhost:5174....
-server.use(cors({ origin: "http://localhost:5174" }));
+server.use(cors({ origin: "http://localhost:5173" }));
 // middleware: bodyparser
 server.use(express.json());
 // middleware: logger
