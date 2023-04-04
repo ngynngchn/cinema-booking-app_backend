@@ -2,7 +2,7 @@
   [
     {
       "id": 1,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     },
@@ -38,13 +38,13 @@
     },
     {
       "id": 7,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     },
     {
       "id": 8,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     },
@@ -62,7 +62,7 @@
     },
     {
       "id": 11,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     },
@@ -170,13 +170,13 @@
     },
     {
       "id": 29,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     },
     {
       "id": 30,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     }
@@ -190,13 +190,13 @@
     },
     {
       "id": 32,
-      "reserved": false,
+      "reserved": true,
       "type": "premium",
       "price": 18
     },
     {
       "id": 33,
-      "reserved": false,
+      "reserved": true,
       "type": "premium",
       "price": 18
     },
@@ -214,25 +214,25 @@
     },
     {
       "id": 36,
-      "reserved": false,
+      "reserved": true,
       "type": "premium",
       "price": 18
     },
     {
       "id": 37,
-      "reserved": false,
+      "reserved": true,
       "type": "premium",
       "price": 18
     },
     {
       "id": 38,
-      "reserved": false,
+      "reserved": true,
       "type": "premium",
       "price": 18
     },
     {
       "id": 39,
-      "reserved": false,
+      "reserved": true,
       "type": "premium",
       "price": 18
     },
@@ -274,13 +274,13 @@
     },
     {
       "id": 46,
-      "reserved": false,
+      "reserved": true,
       "type": "premium",
       "price": 18
     },
     {
       "id": 47,
-      "reserved": false,
+      "reserved": true,
       "type": "premium",
       "price": 18
     },
@@ -334,13 +334,13 @@
     },
     {
       "id": 56,
-      "reserved": false,
+      "reserved": true,
       "type": "premium",
       "price": 18
     },
     {
       "id": 57,
-      "reserved": false,
+      "reserved": true,
       "type": "premium",
       "price": 18
     },
