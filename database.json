@@ -8,13 +8,13 @@
     },
     {
       "id": 2,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     },
     {
       "id": 3,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     },
@@ -98,13 +98,13 @@
     },
     {
       "id": 17,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     },
     {
       "id": 18,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     },
@@ -146,25 +146,25 @@
     },
     {
       "id": 25,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     },
     {
       "id": 26,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     },
     {
       "id": 27,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     },
     {
       "id": 28,
-      "reserved": false,
+      "reserved": true,
       "type": "regular",
       "price": 15
     },
@@ -202,13 +202,13 @@
     },
     {
       "id": 34,
-      "reserved": false,
+      "reserved": true,
       "type": "premium",
       "price": 18
     },
     {
       "id": 35,
-      "reserved": false,
+      "reserved": true,
       "type": "premium",
       "price": 18
     },

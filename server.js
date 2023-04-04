@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import multer from "multer";
+import nodemailer from "nodemailer";
 import {
 	createSeats,
 	read,
@@ -11,17 +12,60 @@ import {
 	updateJSON,
 } from "./helper.js";
 
+import { createMail } from "./mail.js";
 // create server
 const server = express();
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8888;
+
+// middleware: bodyparser for formfields
 const upload = multer();
 
 // enable cross communication to http://localhost:5174....
-server.use(cors({ origin: "http://localhost:5173" }));
+server.use(cors({ origin: "http://localhost:5174" }));
 // middleware: bodyparser
 server.use(express.json());
 // middleware: logger
 server.use(morgan("dev"));
+
+// nodemailer
+const transport = nodemailer.createTransport({
+	host: "sandbox.smtp.mailtrap.io",
+	port: 2525,
+	auth: {
+		user: "916f1c68ce971b",
+		pass: "47c226fb84035d",
+	},
+});
+
+//POST handler to send email
+server.post("/email", (request, response) => {
+	const data = request.body;
+
+	createMail(data)
+		.then((htmlContent) => {
+			const message = {
+				from: "cinema@server.com",
+				to: "admin@server.com",
+				subject: "You received a new booking",
+				text: "This is the plaintext version",
+				html: htmlContent,
+			};
+
+			transport.sendMail(message, (err, info) => {
+				if (err) {
+					console.log("An error occurred:", err);
+					response.sendStatus(500);
+				} else {
+					console.log("Your info:", info);
+					response.sendStatus(200);
+				}
+			});
+		})
+		.catch((error) => {
+			console.log("An error occurred:", error);
+			response.sendStatus(500);
+		});
+});
 
 // GET handler
 server.get("/api/reservations", (request, response) => {
