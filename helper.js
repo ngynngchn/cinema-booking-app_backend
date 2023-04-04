@@ -64,6 +64,33 @@ export function createSeats(newData) {
 	});
 }
 
+export function createShow(newData, path) {
+	return new Promise((resolve, reject) => {
+		console.log("i:", newData);
+		const regularSeats = [];
+		const premiumSeats = [];
+
+		for (let i = 1; i <= newData.regular; i++) {
+			regularSeats.push({ id: i, reserved: false, type: "regular", price: 15 });
+		}
+		for (
+			let j = +newData.regular + 1;
+			j <= +newData.regular + +newData.premium;
+			j++
+		) {
+			premiumSeats.push({ id: j, reserved: false, type: "premium", price: 18 });
+		}
+		const allSeats = [regularSeats, premiumSeats];
+
+		fs.writeFile(path, JSON.stringify(allSeats, null, 2), (err) => {
+			if (err) reject(err);
+			else {
+				resolve("Rewriting data successfull");
+			}
+		});
+	});
+}
+
 export function updateJSON(data) {
 	return new Promise((resolve, reject) => {
 		readData()

@@ -10,6 +10,7 @@ import {
 	readData,
 	updateData,
 	updateJSON,
+	createShow,
 } from "./helper.js";
 
 import { createMail } from "./mail.js";
@@ -67,7 +68,7 @@ server.post("/email", (request, response) => {
 		});
 });
 
-// GET handler
+// GET handler to display current reservations
 server.get("/api/reservations", (request, response) => {
 	readData()
 		.then((data) => response.json(data))
@@ -97,6 +98,15 @@ server.post("/api/reservationList", (request, response) => {
 server.post("/api/seating", upload.none(), (request, response) => {
 	const data = request.body;
 	createSeats(data)
+		.then((updatedData) => response.json(updatedData))
+		.catch((err) => console.log(err));
+});
+
+// POST handler to create screening filled with requested seats
+server.post("/api/create-screening", upload.none(), (request, response) => {
+	const data = request.body;
+	console.log("screen:", data);
+	createShow(data, `./screenings/${data.title}.json`)
 		.then((updatedData) => response.json(updatedData))
 		.catch((err) => console.log(err));
 });
