@@ -15,7 +15,7 @@ import {
 import { createMail } from "./mail.js";
 // create server
 const server = express();
-const PORT = process.env.PORT || 8888;
+const PORT = process.env.PORT;
 
 // middleware: bodyparser for formfields
 const upload = multer();
@@ -27,13 +27,13 @@ server.use(express.json());
 // middleware: logger
 server.use(morgan("dev"));
 
-// nodemailer
+//nodemailer
 const transport = nodemailer.createTransport({
-	host: "sandbox.smtp.mailtrap.io",
-	port: 2525,
+	host: process.env.NODEMAILER_HOST,
+	port: process.env.NODEMAILER_PORT,
 	auth: {
-		user: "916f1c68ce971b",
-		pass: "47c226fb84035d",
+		user: process.env.NODEMAILER_USER,
+		pass: process.env.NODEMAILER_PASS,
 	},
 });
 
