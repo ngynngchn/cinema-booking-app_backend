@@ -16,7 +16,7 @@ export const createReservation = (request, response) => {
 		.catch((err) => console.log(err));
 };
 
-export const getNewReservations = (request, response) => {
+export const updateReservations = (request, response) => {
 	// request.body should be an id
 	const data = request.body;
 	updateData(data)
