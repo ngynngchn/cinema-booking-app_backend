@@ -1,4 +1,15 @@
 import { createMail } from "../utils/mail.js";
+import nodemailer from "nodemailer";
+
+//nodemailer
+const transport = nodemailer.createTransport({
+	host: process.env.NODEMAILER_HOST,
+	port: process.env.NODEMAILER_PORT,
+	auth: {
+		user: process.env.NODEMAILER_USER,
+		pass: process.env.NODEMAILER_PASS,
+	},
+});
 
 export const sendMail = (request, response) => {
 	const data = request.body;
