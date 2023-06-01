@@ -1,4 +1,4 @@
-import "./config/config.js";
+import "./utils/config.js";
 import express from "express";
 import cors from "cors";
 import morgan from "morgan";
@@ -11,9 +11,10 @@ import {
 	updateData,
 	updateJSON,
 	createShow,
-} from "./helper.js";
+} from "./utils/helper.js";
 
-import { createMail } from "./mail.js";
+import { sendMail } from "./controller/mail-controller.js";
+
 // create server
 const server = express();
 const PORT = process.env.PORT;
@@ -22,7 +23,7 @@ const PORT = process.env.PORT;
 const upload = multer();
 
 // enable cross communication to http://localhost:5174....
-server.use(cors({ origin: "http://localhost:5174" }));
+server.use(cors({ origin: "http://localhost:5173" }));
 // middleware: bodyparser
 server.use(express.json());
 // middleware: logger
@@ -38,35 +39,8 @@ const transport = nodemailer.createTransport({
 	},
 });
 
-//POST handler to send email
-server.post("/email", (request, response) => {
-	const data = request.body;
-
-	createMail(data)
-		.then((htmlContent) => {
-			const message = {
-				from: "cinema@server.com",
-				to: "admin@server.com",
-				subject: "You received a new booking",
-				text: "This is the plaintext version",
-				html: htmlContent,
-			};
-
-			transport.sendMail(message, (err, info) => {
-				if (err) {
-					console.log("An error occurred:", err);
-					response.sendStatus(500);
-				} else {
-					console.log("Your info:", info);
-					response.sendStatus(200);
-				}
-			});
-		})
-		.catch((error) => {
-			console.log("An error occurred:", error);
-			response.sendStatus(500);
-		});
-});
+// POST handler to send confirmation email to user
+server.post("/email", sendMail);
 
 // GET handler to display current reservations
 server.get("/api/reservations", (request, response) => {

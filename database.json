@@ -14,19 +14,19 @@
     },
     {
       "id": 3,
-      "reserved": true,
+      "reserved": false,
       "type": "regular",
       "price": 15
     },
     {
       "id": 4,
-      "reserved": true,
+      "reserved": false,
       "type": "regular",
       "price": 15
     },
     {
       "id": 5,
-      "reserved": true,
+      "reserved": false,
       "type": "regular",
       "price": 15
     },
@@ -38,13 +38,13 @@
     },
     {
       "id": 7,
-      "reserved": true,
+      "reserved": false,
       "type": "regular",
       "price": 15
     },
     {
       "id": 8,
-      "reserved": true,
+      "reserved": false,
       "type": "regular",
       "price": 15
     },
@@ -62,7 +62,7 @@
     },
     {
       "id": 11,
-      "reserved": true,
+      "reserved": false,
       "type": "regular",
       "price": 15
     },
@@ -86,25 +86,25 @@
     },
     {
       "id": 15,
-      "reserved": true,
+      "reserved": false,
       "type": "regular",
       "price": 15
     },
     {
       "id": 16,
-      "reserved": true,
+      "reserved": false,
       "type": "regular",
       "price": 15
     },
     {
       "id": 17,
-      "reserved": true,
+      "reserved": false,
       "type": "regular",
       "price": 15
     },
     {
       "id": 18,
-      "reserved": true,
+      "reserved": false,
       "type": "regular",
       "price": 15
     },
@@ -119,69 +119,69 @@
       "reserved": false,
       "type": "regular",
       "price": 15
-    },
+    }
+  ],
+  [
     {
       "id": 21,
       "reserved": false,
-      "type": "regular",
-      "price": 15
+      "type": "premium",
+      "price": 18
     },
     {
       "id": 22,
       "reserved": false,
-      "type": "regular",
-      "price": 15
+      "type": "premium",
+      "price": 18
     },
     {
       "id": 23,
       "reserved": false,
-      "type": "regular",
-      "price": 15
+      "type": "premium",
+      "price": 18
     },
     {
       "id": 24,
       "reserved": false,
-      "type": "regular",
-      "price": 15
+      "type": "premium",
+      "price": 18
     },
     {
       "id": 25,
-      "reserved": true,
-      "type": "regular",
-      "price": 15
+      "reserved": false,
+      "type": "premium",
+      "price": 18
     },
     {
       "id": 26,
-      "reserved": true,
-      "type": "regular",
-      "price": 15
+      "reserved": false,
+      "type": "premium",
+      "price": 18
     },
     {
       "id": 27,
-      "reserved": true,
-      "type": "regular",
-      "price": 15
+      "reserved": false,
+      "type": "premium",
+      "price": 18
     },
     {
       "id": 28,
-      "reserved": true,
-      "type": "regular",
-      "price": 15
+      "reserved": false,
+      "type": "premium",
+      "price": 18
     },
     {
       "id": 29,
-      "reserved": true,
-      "type": "regular",
-      "price": 15
+      "reserved": false,
+      "type": "premium",
+      "price": 18
     },
     {
       "id": 30,
-      "reserved": true,
-      "type": "regular",
-      "price": 15
-    }
-  ],
-  [
+      "reserved": false,
+      "type": "premium",
+      "price": 18
+    },
     {
       "id": 31,
       "reserved": false,
@@ -190,174 +190,54 @@
     },
     {
       "id": 32,
-      "reserved": true,
+      "reserved": false,
       "type": "premium",
       "price": 18
     },
     {
       "id": 33,
-      "reserved": true,
+      "reserved": false,
       "type": "premium",
       "price": 18
     },
     {
       "id": 34,
-      "reserved": true,
+      "reserved": false,
       "type": "premium",
       "price": 18
     },
     {
       "id": 35,
-      "reserved": true,
+      "reserved": false,
       "type": "premium",
       "price": 18
     },
     {
       "id": 36,
-      "reserved": true,
+      "reserved": false,
       "type": "premium",
       "price": 18
     },
     {
       "id": 37,
-      "reserved": true,
+      "reserved": false,
       "type": "premium",
       "price": 18
     },
     {
       "id": 38,
-      "reserved": true,
+      "reserved": false,
       "type": "premium",
       "price": 18
     },
     {
       "id": 39,
-      "reserved": true,
+      "reserved": false,
       "type": "premium",
       "price": 18
     },
     {
       "id": 40,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 41,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 42,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 43,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 44,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 45,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 46,
-      "reserved": true,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 47,
-      "reserved": true,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 48,
-      "reserved": true,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 49,
-      "reserved": true,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 50,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 51,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 52,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 53,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 54,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 55,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 56,
-      "reserved": true,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 57,
-      "reserved": true,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 58,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 59,
-      "reserved": false,
-      "type": "premium",
-      "price": 18
-    },
-    {
-      "id": 60,
       "reserved": false,
       "type": "premium",
       "price": 18

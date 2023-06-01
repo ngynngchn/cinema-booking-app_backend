@@ -14,7 +14,7 @@ This project is a web application that allows users to book tickets for a movie 
 
 - HTML
 - CSS
-- React
+- React.js
 - JavaScript
 - Node.js
 - Express
