@@ -36,10 +36,10 @@ server.post("/email", sendMail);
 server.get("/api/reservations", getReservations);
 
 // create new reservations
-server.post("/api/newReservations", createReservation);
+server.post("/api/new-reservation", createReservation);
 
 // update reservations
-server.post("/api/reservationList", updateReservations);
+server.post("/api/reservation-list", updateReservations);
 
 // create seating plan
 server.post("/api/seating", upload.none(), createSeatingPlan);
