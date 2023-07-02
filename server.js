@@ -9,10 +9,7 @@ import {
 	getReservations,
 	updateReservations,
 } from "./controller/booking-controller.js";
-import {
-	createScreening,
-	createSeatingPlan,
-} from "./controller/admin-controller.js";
+import { createScreening } from "./controller/admin-controller.js";
 
 // create server
 const server = express();
@@ -33,16 +30,13 @@ server.use(morgan("dev"));
 server.post("/email", sendMail);
 
 // get current reservations
-server.get("/api/reservations", getReservations);
+server.get("/api/reservations/:id", getReservations);
 
 // create new reservations
-server.post("/api/new-reservation", createReservation);
+server.post("/api/new-reservation/:id", createReservation);
 
 // update reservations
 server.post("/api/reservation-list", updateReservations);
-
-// create seating plan
-server.post("/api/seating", upload.none(), createSeatingPlan);
 
 // add screening
 server.post("/api/create-screening", upload.none(), createScreening);
