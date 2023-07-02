@@ -1,63 +1,26 @@
 import fs from "fs";
 
-export function readData() {
-	return new Promise((resolve, reject) => {
-		fs.readFile("./database.json", (err, data) => {
-			if (err) reject(err);
-			else {
-				resolve(JSON.parse(data.toString()));
-			}
-		});
-	});
-}
-
 export function read(path) {
 	return new Promise((resolve, reject) => {
-		fs.readFile(path, (err, data) => {
+		fs.readFile(`./screenings/${path}.json`, (err, data) => {
 			if (err) reject(err);
 			else {
+				console.log("Reading screening for movie id", path);
 				resolve(JSON.parse(data.toString()));
 			}
 		});
 	});
 }
 
-export function updateData(newData) {
+export function updateData(newData, path) {
 	return new Promise((resolve, reject) => {
-		fs.writeFile("./database.json", JSON.stringify(newData, null, 2), (err) => {
-			if (err) reject(err);
-			else {
-				resolve("Rewriting data successfull");
-			}
-		});
-	});
-}
-
-export function createSeats(newData) {
-	return new Promise((resolve, reject) => {
-		console.log("i:", newData);
-		const regularSeats = [];
-		const premiumSeats = [];
-
-		for (let i = 1; i <= newData.regular; i++) {
-			regularSeats.push({ id: i, reserved: false, type: "regular", price: 15 });
-		}
-		for (
-			let j = +newData.regular + 1;
-			j <= +newData.regular + +newData.premium;
-			j++
-		) {
-			premiumSeats.push({ id: j, reserved: false, type: "premium", price: 18 });
-		}
-		const allSeats = [regularSeats, premiumSeats];
-
 		fs.writeFile(
-			"./database.json",
-			JSON.stringify(allSeats, null, 2),
+			`./screenings/${path}.json`,
+			JSON.stringify(newData, null, 2),
 			(err) => {
 				if (err) reject(err);
 				else {
-					resolve("Rewriting data successfull");
+					resolve("Created reservation for movie id", path);
 				}
 			}
 		);
@@ -66,7 +29,7 @@ export function createSeats(newData) {
 
 export function createShow(newData, path) {
 	return new Promise((resolve, reject) => {
-		console.log("i:", newData);
+		console.log("Creating new screening:", newData);
 		const regularSeats = [];
 		const premiumSeats = [];
 
@@ -80,28 +43,33 @@ export function createShow(newData, path) {
 		) {
 			premiumSeats.push({ id: j, reserved: false, type: "premium", price: 18 });
 		}
-		const allSeats = [regularSeats, premiumSeats];
-
+		const details = {
+			title: newData.title,
+			id: newData.id,
+			time: newData.time,
+			date: newData.date,
+		};
+		const allSeats = { details: details, seats: [regularSeats, premiumSeats] };
 		fs.writeFile(path, JSON.stringify(allSeats, null, 2), (err) => {
 			if (err) reject(err);
 			else {
-				resolve("Rewriting data successfull");
+				resolve(`Successfully created new screening for ${newData.title}`);
 			}
 		});
 	});
 }
 
-export function updateJSON(data) {
+export function updateJSON(data, path) {
 	return new Promise((resolve, reject) => {
-		readData()
+		read(path)
 			.then((reservations) => {
 				data.forEach((object) => {
-					let index = reservations
+					let index = reservations.seats
 						.flat()
 						.findIndex((reservation) => reservation.id == object.id);
-					reservations.flat()[index].reserved = true;
+					reservations.seats.flat()[index].reserved = true;
 				});
-				updateData(reservations)
+				updateData(reservations, path)
 					.then(() => resolve(reservations))
 					.catch((err) => reject(err));
 			})

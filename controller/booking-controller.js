@@ -1,15 +1,16 @@
-import { readData, updateData, updateJSON } from "../utils/helper.js";
+import { read, updateData, updateJSON } from "../utils/helper.js";
 
-export const getReservations = (_, response) => {
-	readData()
+export const getReservations = (request, response) => {
+	const id = request.params.id;
+	read(id)
 		.then((data) => response.json(data))
 		.catch((err) => console.log(err));
 };
 
 export const createReservation = (request, response) => {
-	// request.body should be an id
+	const id = request.params.id;
 	const data = request.body;
-	updateJSON(data)
+	updateJSON(data, id)
 		.then((res) => {
 			response.json(res);
 		})
@@ -17,7 +18,6 @@ export const createReservation = (request, response) => {
 };
 
 export const updateReservations = (request, response) => {
-	// request.body should be an id
 	const data = request.body;
 	updateData(data)
 		.then((res) => response.json(res))
