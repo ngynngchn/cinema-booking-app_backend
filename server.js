@@ -9,7 +9,10 @@ import {
 	getReservations,
 	updateReservations,
 } from "./controller/booking-controller.js";
-import { createScreening } from "./controller/admin-controller.js";
+import {
+	createScreening,
+	getScreeningIDs,
+} from "./controller/admin-controller.js";
 
 // create server
 const server = express();
@@ -40,6 +43,9 @@ server.post("/api/reservation-list", updateReservations);
 
 // add screening
 server.post("/api/create-screening", upload.none(), createScreening);
+
+// get screening ids
+server.get("/api/get-screenings", getScreeningIDs);
 
 //* ======== SERVER ========
 server.listen(PORT, () => console.log("I am listening to PORT:", PORT));
