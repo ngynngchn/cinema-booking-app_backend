@@ -19,6 +19,8 @@ This project is a web application that allows users to book tickets for a movie 
   - show membership card
   - logout
   - show profile information
+- Admin
+  - create Admin route
 
 #### Admin
 
