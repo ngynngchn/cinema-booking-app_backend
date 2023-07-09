@@ -3,8 +3,8 @@ import express from "express";
 import cors from "cors";
 import morgan from "morgan";
 import multer from "multer";
-import { sendMail } from "./controller/mail-controller.js";
 import cookieParser from "cookie-parser";
+import { sendMail } from "./controller/mail-controller.js";
 import {
 	createReservation,
 	getReservations,
@@ -14,7 +14,17 @@ import {
 	createScreening,
 	getScreeningIDs,
 } from "./controller/admin-controller.js";
-import { logout, login, authenticate } from "./controller/auth-controller.js";
+import {
+	logout,
+	glogin,
+	authenticate,
+	login,
+	register,
+} from "./controller/auth-controller.js";
+import {
+	encryptPassword,
+	validatePassword,
+} from "./middleware/auth-middleware.js";
 
 // create server
 const server = express();
@@ -62,8 +72,19 @@ server.post("/api/create-screening", upload.none(), createScreening);
 server.get("/api/get-screenings", getScreeningIDs);
 
 // login user with google
-server.post("/api/user-info", login);
+server.post("/api/google-login", glogin);
 
+// regular login
+server.post("/api/login", upload.none(), encryptPassword, login);
+
+// regular sign up
+server.post(
+	"/api/register",
+	upload.none(),
+	validatePassword,
+	encryptPassword,
+	register
+);
 // logout user
 server.post("/api/logout", logout);
 

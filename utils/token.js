@@ -14,3 +14,19 @@ export const createToken = (userID, role) => {
 
 	return "Bearer " + token;
 };
+
+// Verify a token and return the decoded payload
+export const verifyToken = (token) => {
+	// Verify the token using the same secret key used to sign the token
+	const result = jwt.verify(token, JWT_SECRET);
+	// Return the decoded payload
+	return result;
+};
+
+export const extractTokenFromCookies = (req) => {
+	const [tokenStrategy, token] = req.cookies["token"].split(" ");
+	if (tokenStrategy !== "Bearer" || !token) {
+		throw new Error("No Tokenstrategy or no token");
+	}
+	return token;
+};
