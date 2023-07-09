@@ -17,11 +17,13 @@ import {
 import {
 	logout,
 	glogin,
-	authenticate,
 	login,
 	register,
+	admin,
+	user,
 } from "./controller/auth-controller.js";
 import {
+	authenticate,
 	encryptPassword,
 	validatePassword,
 } from "./middleware/auth-middleware.js";
@@ -40,7 +42,7 @@ server.use(cookieParser());
 // enable cross communication to frontend
 server.use(
 	cors({
-		origin: process.env.VITE_FRONTEND,
+		origin: process.env.VITE_FRONTEND || "http://127.0.0.1:5173",
 		credentials: true,
 		exposedHeaders: [
 			"Cross-Origin-Opener-Policy",
@@ -89,7 +91,8 @@ server.post(
 server.post("/api/logout", logout);
 
 // authenticate use
-server.post("/api/authenticate", authenticate);
+server.post("/api/admin", authenticate, admin);
+server.post("/api/user", authenticate, user);
 
 //* ======== SERVER ========
 server.listen(PORT, () => console.log("I am listening to PORT:", PORT));
