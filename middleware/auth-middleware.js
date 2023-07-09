@@ -1,5 +1,8 @@
 import { createHmac } from "crypto";
-import { verifyToken } from "../utils/token.js";
+import jwt from "jsonwebtoken";
+import { extractTokenFromCookies, verifyToken } from "../utils/token.js";
+
+const JWT_SECRET = process.env.JWT_SECRET;
 
 export const encryptPassword = (req, _, next) => {
 	console.log("Encrypting Password...");
@@ -44,4 +47,15 @@ export const validatePassword = (req, res, next) => {
 
 	// pass control to the next middleware in the chain
 	next();
+};
+
+export const authenticate = (request, response, next) => {
+	try {
+		const token = extractTokenFromCookies(request);
+		const userClaims = jwt.verify(token, JWT_SECRET);
+		request.userClaims = userClaims;
+		next();
+	} catch (error) {
+		response.status(401).end();
+	}
 };
