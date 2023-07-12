@@ -37,10 +37,11 @@ export const glogin = async (request, response) => {
 // regular login
 export const login = async (request, response) => {
 	const db = await getDb();
+	console.log(request.body);
 	try {
 		let result = await db
 			.collection(COL)
-			.findOne({ email: request.body.email, pwd: request.body.pwd });
+			.findOne({ email: request.body.email, password: request.body.password });
 
 		const token = createToken(result._id, result.role);
 		response.cookie("token", token, options);
