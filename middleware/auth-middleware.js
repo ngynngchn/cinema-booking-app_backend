@@ -7,9 +7,9 @@ const JWT_SECRET = process.env.JWT_SECRET;
 export const encryptPassword = (req, _, next) => {
 	console.log("Encrypting Password...");
 	req.body.role = "user";
-	delete req.body.cpwd;
-	const hmac = createHmac("sha256", req.body.pwd);
-	req.body.pwd = hmac.digest("hex");
+	delete req.body.confirmPassword;
+	const hmac = createHmac("sha256", req.body.password);
+	req.body.password = hmac.digest("hex");
 	next();
 };
 
@@ -37,11 +37,11 @@ export const verifyJWTCookie = (req, res, next) => {
 
 // Validate that the password and confirm password fields in the request body match
 export const validatePassword = (req, res, next) => {
-	const pwd = req.body.pwd;
-	const cpwd = req.body.cpwd;
+	const password = req.body.password;
+	const confirmPassword = req.body.confirmPassword;
 
 	// send 400 Bad Request response if the passwords do not match
-	if (pwd !== cpwd) {
+	if (password !== confirmPassword) {
 		return res.status(400).json({ message: "Passwords do not match" });
 	}
 
