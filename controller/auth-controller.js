@@ -1,12 +1,11 @@
-import jwt from "jsonwebtoken";
 import { OAuth2Client } from "google-auth-library";
-import { createToken, extractTokenFromCookies } from "../utils/token.js";
+import { createToken } from "../utils/token.js";
 import { getDb } from "../utils/db.js";
 
 const clientID = process.env.CLIENT_ID;
-const JWT_SECRET = process.env.JWT_SECRET;
 const COL = "user";
 const client = new OAuth2Client(clientID);
+const options = { secure: true, httpOnly: true, sameSite: "None" };
 
 // google login
 export const glogin = async (request, response) => {
@@ -21,11 +20,7 @@ export const glogin = async (request, response) => {
 		// check if user exists in database, confirm role and log in with role
 
 		const token = createToken(payload.sub, "user");
-		response.cookie("token", token, {
-			secure: true,
-			httpOnly: true,
-			sameSite: "None",
-		});
+		response.cookie("token", token, options);
 
 		const user = {
 			email: payload.email,
@@ -41,16 +36,17 @@ export const glogin = async (request, response) => {
 
 // regular login
 export const login = async (request, response) => {
-	console.log("LOGIN", request.email, request.pwd);
-	// check if database has a user with the email and password
-	// if true create token
 	const db = await getDb();
+	console.log(request.body);
 	try {
 		let result = await db
 			.collection(COL)
-			.findOne({ email: request.email, pwd: request.pwd });
-		console.log(result);
-		response.json({message:})
+			.findOne({ email: request.body.email, password: request.body.password });
+
+		const token = createToken(result._id, result.role);
+		response.cookie("token", token, options);
+
+		response.status(200).json({ message: "Successfully logged in" });
 	} catch (error) {
 		console.log("Could not log in ");
 	}
@@ -59,17 +55,6 @@ export const login = async (request, response) => {
 // logout route
 export const logout = async (_, response) => {
 	response.clearCookie("token").sendStatus(200);
-};
-
-export const authenticate = (request, response) => {
-	try {
-		const token = extractTokenFromCookies(request);
-		const userClaims = jwt.verify(token, JWT_SECRET);
-		request.userClaims = userClaims;
-		response.status(200).json(userClaims);
-	} catch (error) {
-		response.status(401).end();
-	}
 };
 
 const checkMail = async (email) => {
@@ -93,5 +78,23 @@ export const register = async (request, response) => {
 		return response
 			.status(400)
 			.json({ message: "Sorry but this email is already in use" });
+	}
+};
+
+export const admin = async (request, response) => {
+	if (request.userClaims.role === "admin") {
+		response.sendStatus(200);
+	} else {
+		response.sendStatus(401);
+	}
+};
+export const user = async (request, response) => {
+	if (
+		request.userClaims.role === "user" ||
+		request.userClaims.role === "admin"
+	) {
+		response.sendStatus(200);
+	} else {
+		response.sendStatus(401);
 	}
 };
